@@ -5,7 +5,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {BalanceChecker} from "contracts/BalanceChecker.sol";
 import {MintableERC20} from "contracts/mocks/MintableERC20.sol";
 
-contract CounterTest is Test {
+contract BalanceCheckerTest is Test {
     address public balanceCheckerAddress = 0xFe42B641bD4489E28914756Be84f2a7E2dF8Ab2B;
     BalanceChecker public balanceChecker;
     MintableERC20 public testToken;
