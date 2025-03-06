@@ -51,10 +51,10 @@ contract CounterTest is Test {
         // infos[3] -> user2, ETH
 
         // Verify token balances from the dummy token.
-        assertEq(infos[0].balance, 100, "User1 token balance should be 100");
+        assertEq(infos[0].balance, 100 * (10 ** testToken.decimals()), "User1 token balance should be 100");
         // Verify ETH balance using vm.deal (user1 should have 1 ether).
         assertEq(infos[1].balance, 1 ether, "User1 ETH balance should be 1 ether");
-        assertEq(infos[2].balance, 200, "User2 token balance should be 200");
+        assertEq(infos[2].balance, 200 * (10 ** testToken.decimals()), "User2 token balance should be 200");
         assertEq(infos[3].balance, 2 ether, "User2 ETH balance should be 2 ether");
     }
 }
