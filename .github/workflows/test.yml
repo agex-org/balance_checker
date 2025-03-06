@@ -40,6 +40,9 @@ jobs:
         id: build
 
       - name: Run Forge tests
+        env:
+          SONIC_RPC: ${{ secrets.SONIC_RPC }}
+          SONIC_BLAZE_RPC: ${{ secrets.SONIC_BLAZE_RPC }}
         run: |
           forge test -vvv
         id: test
