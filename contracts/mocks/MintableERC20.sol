@@ -10,8 +10,8 @@ contract MintableERC20 is ERC20 {
 		_decimals = decimals_;
 	}
 
-	function mint(address recipient) public {
-		_mint(recipient, 250 * 10 ** decimals());
+	function mint(address recipient, uint256 amount) public {
+		_mint(recipient, amount * 10 ** decimals());
 	}
 
 	function decimals() public view override returns (uint8) {

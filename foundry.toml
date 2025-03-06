@@ -5,5 +5,5 @@ libs = ["lib"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 [rpc_endpoints]
-sonic_blaze = "${RPC_SONIC_BLAZE}"
-sonic = "${RPC_SONIC}"
+sonic_blaze_rpc = "${SONIC_BLAZE_RPC}"
+sonic_rpc = "${SONIC_RPC}"
