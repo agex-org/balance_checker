@@ -128,14 +128,12 @@ contract BalanceCheckerTest is Test {
         // Ensure that sending ETH directly to the BalanceChecker reverts.
         vm.expectRevert(bytes("BalanceChecker does not accept payments"));
         (bool success, ) = address(balanceChecker).call{value: 0.1 ether}("");
-        require(!success, "BalanceChecker should not accept ETH payments");
     }
 
     function testFallbackETHReverts() public {
         // Sending ETH with arbitrary data should also revert.
         vm.expectRevert(bytes("BalanceChecker does not accept payments"));
         (bool success, ) = address(balanceChecker).call{value: 0.1 ether}(hex"deadbeef");
-        require(!success, "BalanceChecker fallback should not accept ETH payments");
     }
 
     function testInvalidTokenAddress() public {
