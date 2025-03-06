@@ -29,11 +29,7 @@ contract BalanceChecker {
         address token;
     }
 
-    function tokenBalance(address user, address token)
-    private
-    view
-    returns (uint256)
-    {
+    function tokenBalance(address user, address token) private view returns (uint256) {
         uint256 tokenCode;
         assembly {
             tokenCode := extcodesize(token)
@@ -55,13 +51,11 @@ contract BalanceChecker {
         Returns an array of BalanceInfo structs, each containing the user, token, and balance.
     */
     function getAllTokensBalances(address[] calldata users, address[] calldata tokens)
-    external
-    view
-    returns (BalanceInfo[] memory)
+        external
+        view
+        returns (BalanceInfo[] memory)
     {
-        BalanceInfo[] memory addrBalances = new BalanceInfo[](
-            tokens.length * users.length
-        );
+        BalanceInfo[] memory addrBalances = new BalanceInfo[](tokens.length * users.length);
 
         uint256 currentBlockNumber = block.number;
         uint256 currentBlockTimestamp = block.timestamp;
@@ -96,15 +90,14 @@ contract BalanceChecker {
      * @return balances An array of BalanceInfo structs with each user-token pair and the associated balance.
      */
     function getSelectedTokenBalances(BalanceRequest[] calldata requests)
-    external
-    view
-    returns (BalanceInfo[] memory)
+        external
+        view
+        returns (BalanceInfo[] memory)
     {
         BalanceInfo[] memory balances = new BalanceInfo[](requests.length);
 
         uint256 currentBlockNumber = block.number;
         uint256 currentBlockTimestamp = block.timestamp;
-
 
         for (uint256 i = 0; i < requests.length; i++) {
             address user = requests[i].user;
