@@ -42,7 +42,7 @@ contract BalanceCheckerTest is Test {
 
         address[] memory tokens = new address[](2);
         tokens[0] = address(testToken); // ERC20 token balance
-        tokens[1] = address(0);         // ETH balance
+        tokens[1] = address(0); // ETH balance
 
         // Call the batch balance function
         BalanceChecker.BalanceInfo[] memory infos = balanceChecker.getAllTokensBalances(users, tokens);
@@ -127,13 +127,13 @@ contract BalanceCheckerTest is Test {
     function testReceiveETHReverts() public {
         // Ensure that sending ETH directly to the BalanceChecker reverts.
         vm.expectRevert(bytes("BalanceChecker does not accept payments"));
-        (bool success, ) = address(balanceChecker).call{value: 0.1 ether}("");
+        (bool success,) = address(balanceChecker).call{value: 0.1 ether}("");
     }
 
     function testFallbackETHReverts() public {
         // Sending ETH with arbitrary data should also revert.
         vm.expectRevert(bytes("BalanceChecker does not accept payments"));
-        (bool success, ) = address(balanceChecker).call{value: 0.1 ether}(hex"deadbeef");
+        (bool success,) = address(balanceChecker).call{value: 0.1 ether}(hex"deadbeef");
     }
 
     function testInvalidTokenAddress() public {
