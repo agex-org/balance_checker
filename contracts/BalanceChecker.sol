@@ -29,10 +29,7 @@ contract BalanceChecker {
         address token;
     }
 
-    function tokenBalance(
-        address user,
-        address token
-    ) private view returns (uint256) {
+    function tokenBalance(address user, address token) private view returns (uint256) {
         uint256 tokenCode;
         assembly {
             tokenCode := extcodesize(token)
@@ -53,13 +50,12 @@ contract BalanceChecker {
         Check the token balances of a wallet for multiple tokens.
         Returns an array of BalanceInfo structs, each containing the user, token, and balance.
     */
-    function getAllTokensBalances(
-        address[] calldata users,
-        address[] calldata tokens
-    ) external view returns (BalanceInfo[] memory) {
-        BalanceInfo[] memory addrBalances = new BalanceInfo[](
-            tokens.length * users.length
-        );
+    function getAllTokensBalances(address[] calldata users, address[] calldata tokens)
+        external
+        view
+        returns (BalanceInfo[] memory)
+    {
+        BalanceInfo[] memory addrBalances = new BalanceInfo[](tokens.length * users.length);
 
         uint256 currentBlockNumber = block.number;
         uint256 currentBlockTimestamp = block.timestamp;
@@ -93,9 +89,11 @@ contract BalanceChecker {
      *                 If the token address is `address(0)`, the function retrieves the ETH balance of the user.
      * @return balances An array of BalanceInfo structs with each user-token pair and the associated balance.
      */
-    function getSelectedTokenBalances(
-        BalanceRequest[] calldata requests
-    ) external view returns (BalanceInfo[] memory) {
+    function getSelectedTokenBalances(BalanceRequest[] calldata requests)
+        external
+        view
+        returns (BalanceInfo[] memory)
+    {
         BalanceInfo[] memory balances = new BalanceInfo[](requests.length);
 
         uint256 currentBlockNumber = block.number;
